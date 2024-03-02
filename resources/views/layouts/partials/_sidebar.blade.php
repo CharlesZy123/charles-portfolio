@@ -13,25 +13,45 @@
                 <a href="https://www.facebook.com/zy.varQuez.charles.05" class="facebook"><i class="bx bxl-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
                 <a href="https://www.linkedin.com/in/zy-var-6372722b5/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                <a href="#contact" class="contact"><i class="bx bx-envelope"></i></a>
             </div>
         </div>
 
         <nav id="navbar" class="nav-menu navbar">
             <ul>
-                <li><a href="/" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a>
-                </li>
+                @guest
+                    <li><a href="/" class="nav-link scrollto {{ Request::routeIs('welcome') ? 'active' : '' }}"><i class="bx bx-home"></i> <span>Home</span></a></li>
 
-                <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a>
-                </li>
-                <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i>
-                        <span>Resume</span></a>
-                </li>
-                <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i>
-                        <span>Portfolio</span></a></li>
-                <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i>
-                        <span>Services</span></a>
-                </li>
+                    <li><a href="{{ route('about.page') }}" class="nav-link scrollto {{ Request::routeIs('about.page') ? 'active' : '' }}"><i class="bx bx-user"></i> <span>About</span></a></li>
+
+                    <li><a href="" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+
+                    <li><a href="" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+
+                    <li><a href="" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
+
+                    <li><a href="" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+                @else
+                    <li><a href="{{ route('home') }}" class="nav-link scrollto {{ Request::routeIs('home') ? 'active' : '' }}"><i class="bx bxs-dashboard"></i> <span>Dashboard</span></a></li>
+
+                    {{-- <li><a href="#" class="nav-link scrollto"><i class="bx bx-cog"></i> <span>Settings</span></a> --}}
+                        <ul class="sub-menu">
+                            <li><a href="{{ route('about.page') }}" class="nav-link scrollto {{ Request::routeIs('about.page') ? 'active' : '' }}"><i class="bx bx-user"></i> <span>About</span></a></li>
+                            <li><a href="#" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+                            <li><a href="#" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                            <li><a href="#" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
+                            {{-- <li><a href="#" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> --}}
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link scrollto">
+                            <i class="bx bx-log-out-circle"></i> <span>Logout</span>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                @endguest
             </ul>
         </nav>
     </div>
