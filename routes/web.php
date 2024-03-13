@@ -18,10 +18,6 @@ Route::get('/', function () {
     return view('welcome.startpage');
 })->name('welcome');
 
-Route::get('/about', function () {
-    return view('welcome.aboutpage');
-})->name('about.page');
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
